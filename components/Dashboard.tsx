@@ -324,7 +324,7 @@ const Dashboard: React.FC<DashboardProps> = ({ config, initialKids, onFinish }) 
                   <div key={activeState.mode} className="animate-mode-enter inline-block">
                     <span 
                       key={activeState.secondsLeft} 
-                      className={`inline-block ${isStudy ? 'text-textMain' : 'text-accent'} ${isStudyComplete ? 'text-accent animate-pulse' : 'animate-tick'}`}
+                      className={`inline-block tabular-nums ${isStudy ? 'text-textMain' : 'text-accent'} ${isStudyComplete ? 'text-accent animate-pulse' : 'animate-tick'}`}
                     >
                       {formatTime(activeState.secondsLeft)}
                     </span>
