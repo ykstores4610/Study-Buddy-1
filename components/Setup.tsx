@@ -72,6 +72,14 @@ const Setup: React.FC<SetupProps> = ({ onNext }) => {
     playSound(formData.soundType, formData.customSoundData);
   };
 
+  // Helper styles for custom select arrow
+  const selectStyle = {
+    backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+    backgroundPosition: `right 1rem center`,
+    backgroundRepeat: `no-repeat`,
+    backgroundSize: `1.5em 1.5em`
+  };
+
   return (
     <div className="max-w-xl mx-auto bg-white p-8 md:p-10 rounded-[2.5rem] shadow-soft border border-white/50">
       <div className="text-center mb-10">
@@ -84,41 +92,57 @@ const Setup: React.FC<SetupProps> = ({ onNext }) => {
         <div className="grid grid-cols-2 gap-6">
           <div className="col-span-2">
             <label className="block text-sm font-bold text-textMuted uppercase tracking-wider mb-3">Number of Students</label>
-            <input
-              type="number"
+            <select
               value={formData.numKids}
               onChange={(e) => handleChange('numKids', e.target.value)}
-              className="w-full p-4 bg-background border-none rounded-2xl text-lg font-medium text-textMain focus:ring-2 focus:ring-primary/50 outline-none transition-all shadow-inner"
-            />
+              className="w-full p-4 bg-background border-none rounded-2xl text-lg font-medium text-textMain focus:ring-2 focus:ring-primary/50 outline-none transition-all shadow-inner appearance-none cursor-pointer"
+              style={selectStyle}
+            >
+              {[1, 2, 3, 4, 5].map(num => (
+                <option key={num} value={num}>{num} Student{num > 1 ? 's' : ''}</option>
+              ))}
+            </select>
           </div>
 
           <div className="col-span-2">
             <label className="block text-sm font-bold text-textMuted uppercase tracking-wider mb-3">Sessions per Student</label>
-            <input
-              type="number"
+            <select
               value={formData.numSessions}
               onChange={(e) => handleChange('numSessions', e.target.value)}
-              className="w-full p-4 bg-background border-none rounded-2xl text-lg font-medium text-textMain focus:ring-2 focus:ring-primary/50 outline-none transition-all shadow-inner"
-            />
+              className="w-full p-4 bg-background border-none rounded-2xl text-lg font-medium text-textMain focus:ring-2 focus:ring-primary/50 outline-none transition-all shadow-inner appearance-none cursor-pointer"
+              style={selectStyle}
+            >
+              {Array.from({ length: 10 }, (_, i) => i + 1).map(num => (
+                <option key={num} value={num}>{num} Session{num > 1 ? 's' : ''}</option>
+              ))}
+            </select>
           </div>
 
           <div>
             <label className="block text-sm font-bold text-textMuted uppercase tracking-wider mb-3">Study (min)</label>
-            <input
-              type="number"
+            <select
               value={formData.studyDurationMinutes}
               onChange={(e) => handleChange('studyDurationMinutes', e.target.value)}
-              className="w-full p-4 bg-background border-none rounded-2xl text-lg font-medium text-textMain focus:ring-2 focus:ring-primary/50 outline-none transition-all shadow-inner"
-            />
+              className="w-full p-4 bg-background border-none rounded-2xl text-lg font-medium text-textMain focus:ring-2 focus:ring-primary/50 outline-none transition-all shadow-inner appearance-none cursor-pointer"
+              style={selectStyle}
+            >
+              {Array.from({ length: 120 }, (_, i) => i + 1).map(num => (
+                <option key={num} value={num}>{num} min</option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block text-sm font-bold text-textMuted uppercase tracking-wider mb-3">Break (min)</label>
-            <input
-              type="number"
+            <select
               value={formData.breakDurationMinutes}
               onChange={(e) => handleChange('breakDurationMinutes', e.target.value)}
-              className="w-full p-4 bg-background border-none rounded-2xl text-lg font-medium text-textMain focus:ring-2 focus:ring-primary/50 outline-none transition-all shadow-inner"
-            />
+              className="w-full p-4 bg-background border-none rounded-2xl text-lg font-medium text-textMain focus:ring-2 focus:ring-primary/50 outline-none transition-all shadow-inner appearance-none cursor-pointer"
+              style={selectStyle}
+            >
+              {Array.from({ length: 120 }, (_, i) => i + 1).map(num => (
+                <option key={num} value={num}>{num} min</option>
+              ))}
+            </select>
           </div>
         </div>
 
@@ -129,7 +153,8 @@ const Setup: React.FC<SetupProps> = ({ onNext }) => {
             <select
               value={formData.soundType}
               onChange={(e) => handleChange('soundType', e.target.value as SoundType)}
-              className="flex-1 p-4 bg-white border-none rounded-xl text-textMain font-medium focus:ring-2 focus:ring-primary/50 outline-none shadow-sm cursor-pointer"
+              className="flex-1 p-4 bg-white border-none rounded-xl text-textMain font-medium focus:ring-2 focus:ring-primary/50 outline-none shadow-sm cursor-pointer appearance-none"
+              style={selectStyle}
             >
               <option value="classic">Classic Alarm</option>
               <option value="bell">Gentle Bell</option>
