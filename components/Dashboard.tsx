@@ -321,9 +321,14 @@ const Dashboard: React.FC<DashboardProps> = ({ config, initialKids, onFinish }) 
 
                 {/* Timer Display */}
                 <div className={`relative z-10 font-mono font-medium mb-10 tracking-tighter leading-none transition-all duration-500 ${isStudyComplete ? 'scale-110' : ''}`} style={{ fontSize: 'clamp(4rem, 15vw, 7rem)' }}>
-                  <span className={`${isStudy ? 'text-textMain' : 'text-accent'} ${isStudyComplete ? 'text-accent animate-pulse' : ''}`}>
-                    {formatTime(activeState.secondsLeft)}
-                  </span>
+                  <div key={activeState.mode} className="animate-mode-enter inline-block">
+                    <span 
+                      key={activeState.secondsLeft} 
+                      className={`inline-block ${isStudy ? 'text-textMain' : 'text-accent'} ${isStudyComplete ? 'text-accent animate-pulse' : 'animate-tick'}`}
+                    >
+                      {formatTime(activeState.secondsLeft)}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Controls */}
